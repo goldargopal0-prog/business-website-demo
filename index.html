@@ -1,1 +1,1312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 
+<title>NOVA BUSINESS</title>
+
+<style>
+*{
+ margin:0;
+ padding:0;
+ box-sizing:border-box;
+ scroll-behavior:smooth;
+}
+
+body{
+ background:#050509;
+ color:white;
+ font-family:Arial,sans-serif;
+ overflow-x:hidden;
+}
+
+/* BACKGROUND */
+
+canvas{
+ position:fixed;
+ inset:0;
+ pointer-events:none;
+ z-index:-5;
+}
+
+.orb{
+ position:fixed;
+ width:280px;
+ height:280px;
+ border-radius:50%;
+ filter:blur(90px);
+ opacity:.18;
+ z-index:-4;
+ animation:float 8s infinite alternate;
+}
+
+.orb1{
+ background:#00eaff;
+ top:10%;
+ left:-120px;
+}
+
+.orb2{
+ background:#8b5cf6;
+ right:-120px;
+ bottom:5%;
+ animation-delay:2s;
+}
+
+@keyframes float{
+ from{transform:translate(0,0)}
+ to{transform:translate(70px,-50px)}
+}
+
+/* HEADER */
+
+header{
+ position:fixed;
+ top:0;
+ width:100%;
+ z-index:1000;
+ padding:15px 6%;
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ background:rgba(5,5,9,.75);
+ backdrop-filter:blur(15px);
+ border-bottom:1px solid #222;
+}
+
+.logo{
+ font-size:21px;
+ font-weight:bold;
+}
+
+.logo span{
+ color:#00eaff;
+}
+
+nav a{
+ color:white;
+ text-decoration:none;
+ margin-left:15px;
+ font-size:12px;
+}
+
+nav a:hover{
+ color:#00eaff;
+}
+
+/* HERO */
+
+.hero{
+ min-height:100vh;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ text-align:center;
+ padding:120px 20px 70px;
+ perspective:1000px;
+}
+
+.heroBox{
+ max-width:850px;
+ transition:.2s;
+ transform-style:preserve-3d;
+}
+
+.badge{
+ display:inline-block;
+ padding:9px 17px;
+ border:1px solid #00eaff;
+ border-radius:30px;
+ color:#00eaff;
+ font-size:11px;
+ margin-bottom:22px;
+}
+
+.hero h1{
+ font-size:clamp(45px,10vw,90px);
+ line-height:1;
+ margin-bottom:20px;
+}
+
+.gradient{
+ background:linear-gradient(
+ 90deg,
+ #00eaff,
+ #8b5cf6,
+ #00eaff
+ );
+ background-size:200%;
+ -webkit-background-clip:text;
+ color:transparent;
+ animation:gradient 4s linear infinite;
+}
+
+@keyframes gradient{
+ to{background-position:200%}
+}
+
+.hero p{
+ max-width:650px;
+ margin:auto;
+ color:#aaa;
+ line-height:1.7;
+ font-size:16px;
+}
+
+.btn{
+ display:inline-block;
+ margin:7px;
+ padding:14px 23px;
+ border-radius:30px;
+ text-decoration:none;
+ background:#00eaff;
+ color:#000;
+ font-weight:bold;
+ transition:.3s;
+}
+
+.btn:hover{
+ transform:translateY(-5px) scale(1.04);
+ box-shadow:0 0 30px rgba(0,234,255,.35);
+}
+
+.darkBtn{
+ background:transparent;
+ color:white;
+ border:1px solid #333;
+}
+
+/* 3D CUBE */
+
+.cubeWrap{
+ position:absolute;
+ right:7%;
+ top:28%;
+ width:90px;
+ height:90px;
+ perspective:600px;
+ opacity:.55;
+}
+
+.cube{
+ width:90px;
+ height:90px;
+ position:relative;
+ transform-style:preserve-3d;
+ animation:rotateCube 8s linear infinite;
+}
+
+.face{
+ position:absolute;
+ width:90px;
+ height:90px;
+ border:1px solid #00eaff;
+ background:rgba(0,234,255,.03);
+}
+
+.f1{transform:translateZ(45px)}
+.f2{transform:rotateY(180deg) translateZ(45px)}
+.f3{transform:rotateY(90deg) translateZ(45px)}
+.f4{transform:rotateY(-90deg) translateZ(45px)}
+.f5{transform:rotateX(90deg) translateZ(45px)}
+.f6{transform:rotateX(-90deg) translateZ(45px)}
+
+@keyframes rotateCube{
+ from{transform:rotateX(0) rotateY(0)}
+ to{transform:rotateX(360deg) rotateY(360deg)}
+}
+
+/* SECTIONS */
+
+section{
+ padding:90px 7%;
+}
+
+.title{
+ text-align:center;
+ font-size:36px;
+ margin-bottom:42px;
+}
+
+.title span{
+ color:#00eaff;
+}
+
+/* STATS */
+
+.stats{
+ display:grid;
+ grid-template-columns:repeat(4,1fr);
+ gap:18px;
+}
+
+.stat{
+ text-align:center;
+ padding:25px 10px;
+ background:#0d0d12;
+ border:1px solid #222;
+ border-radius:20px;
+}
+
+.stat h2{
+ color:#00eaff;
+ font-size:32px;
+}
+
+.stat p{
+ color:#888;
+ margin-top:8px;
+}
+
+/* SERVICES */
+
+.cards{
+ display:grid;
+ grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+ gap:20px;
+}
+
+.card{
+ padding:30px 20px;
+ min-height:215px;
+ text-align:center;
+ border:1px solid #222;
+ border-radius:22px;
+ background:linear-gradient(145deg,#111118,#09090d);
+ transform-style:preserve-3d;
+ transition:.15s;
+}
+
+.card:hover{
+ border-color:#00eaff;
+}
+
+.icon{
+ font-size:44px;
+ margin-bottom:15px;
+}
+
+.card h3{
+ margin-bottom:10px;
+}
+
+.card p{
+ color:#999;
+ line-height:1.6;
+}
+
+/* OFFER */
+
+.offer{
+ max-width:950px;
+ margin:auto;
+ text-align:center;
+ padding:35px 20px;
+ border-radius:25px;
+ border:1px solid #164e58;
+ background:#0b1114;
+}
+
+.offer h2{
+ font-size:34px;
+ margin-bottom:10px;
+}
+
+.offer p{
+ color:#aaa;
+}
+
+/* PRODUCTS */
+
+.products{
+ display:grid;
+ grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
+ gap:20px;
+}
+
+.product{
+ background:#0d0d12;
+ border:1px solid #222;
+ border-radius:20px;
+ overflow:hidden;
+ transition:.35s;
+}
+
+.product:hover{
+ transform:translateY(-8px);
+ border-color:#00eaff;
+}
+
+.productPhoto{
+ height:170px;
+ display:flex;
+ justify-content:center;
+ align-items:center;
+ font-size:60px;
+ background:linear-gradient(135deg,#153238,#09090d);
+}
+
+.productInfo{
+ padding:18px;
+}
+
+.productInfo p{
+ color:#888;
+ margin:7px 0;
+}
+
+.price{
+ color:#00eaff;
+ font-size:20px;
+ font-weight:bold;
+}
+
+/* GALLERY */
+
+.gallery{
+ max-width:900px;
+ margin:auto;
+ display:grid;
+ grid-template-columns:repeat(4,1fr);
+ gap:15px;
+}
+
+.galleryItem{
+ height:180px;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ font-size:58px;
+ background:linear-gradient(135deg,#142f35,#0c0c11);
+ border:1px solid #222;
+ border-radius:20px;
+ transition:.35s;
+}
+
+.galleryItem:hover{
+ transform:scale(1.04);
+ border-color:#00eaff;
+}
+
+/* REVIEWS */
+
+.reviews{
+ display:grid;
+ grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+ gap:20px;
+}
+
+.review{
+ padding:25px;
+ background:#0d0d12;
+ border:1px solid #222;
+ border-radius:20px;
+}
+
+.stars{
+ color:#ffd000;
+ margin-bottom:12px;
+}
+
+.review p{
+ color:#aaa;
+ line-height:1.6;
+}
+
+.review h4{
+ margin-top:15px;
+}
+
+/* FAQ */
+
+.faq{
+ max-width:800px;
+ margin:auto;
+}
+
+details{
+ background:#0d0d12;
+ border:1px solid #222;
+ border-radius:15px;
+ padding:18px;
+ margin-bottom:12px;
+}
+
+summary{
+ cursor:pointer;
+ font-weight:bold;
+}
+
+details p{
+ color:#999;
+ margin-top:12px;
+ line-height:1.6;
+}
+
+/* INFO */
+
+.infoGrid{
+ max-width:900px;
+ margin:auto;
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:20px;
+}
+
+.infoBox{
+ padding:30px 20px;
+ text-align:center;
+ background:#0d0d12;
+ border:1px solid #222;
+ border-radius:22px;
+}
+
+.infoBox p{
+ color:#999;
+ line-height:1.8;
+ margin:15px 0;
+}
+
+/* CONTACT */
+
+.contactBox{
+ max-width:650px;
+ margin:auto;
+ padding:40px 25px;
+ text-align:center;
+ background:#0d0d12;
+ border:1px solid #222;
+ border-radius:25px;
+}
+
+.contactBox p{
+ color:#999;
+ line-height:1.7;
+ margin:15px 0 20px;
+}
+
+/* GET WEBSITE */
+
+.getWebsite{
+ text-align:center;
+ padding:55px 20px;
+ border-radius:28px;
+ background:#0d0b17;
+ border:1px solid #34265c;
+}
+
+.getWebsite h2{
+ font-size:38px;
+ margin-bottom:15px;
+}
+
+.getWebsite p{
+ max-width:600px;
+ margin:auto;
+ color:#aaa;
+ line-height:1.7;
+}
+
+/* WHATSAPP */
+
+.whatsapp{
+ position:fixed;
+ right:20px;
+ bottom:20px;
+ width:58px;
+ height:58px;
+ display:flex;
+ justify-content:center;
+ align-items:center;
+ border-radius:50%;
+ background:#25D366;
+ color:white;
+ text-decoration:none;
+ font-size:27px;
+ z-index:999;
+ animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+ 70%{
+  box-shadow:0 0 0 18px rgba(37,211,102,0);
+ }
+}
+
+/* SCROLL ANIMATION */
+
+.reveal{
+ opacity:0;
+ transform:translateY(50px);
+ transition:1s;
+}
+
+.reveal.show{
+ opacity:1;
+ transform:translateY(0);
+}
+
+/* FOOTER */
+
+footer{
+ padding:35px;
+ text-align:center;
+ color:#666;
+ border-top:1px solid #222;
+}
+
+/* MOBILE */
+
+@media(max-width:700px){
+
+ header{
+  padding:14px 4%;
+ }
+
+ .logo{
+  font-size:17px;
+ }
+
+ nav a{
+  font-size:9px;
+  margin-left:5px;
+ }
+
+ .cubeWrap{
+  right:-35px;
+  top:20%;
+  transform:scale(.55);
+ }
+
+ section{
+  padding:70px 5%;
+ }
+
+ .title{
+  font-size:30px;
+ }
+
+ .stats{
+  grid-template-columns:1fr 1fr;
+ }
+
+ .gallery{
+  grid-template-columns:1fr 1fr;
+ }
+
+ .galleryItem{
+  height:140px;
+ }
+
+ .infoGrid{
+  grid-template-columns:1fr;
+ }
+
+ .getWebsite h2{
+  font-size:30px;
+ }
+}
+</style>
+</head>
+
+
+<body>
+
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+
+<canvas id="particles"></canvas>
+
+
+<header>
+
+ <div class="logo">
+  NOVA<span>BUSINESS</span>
+ </div>
+
+ <nav>
+  <a href="#home">Home</a>
+  <a href="#services">Services</a>
+  <a href="#products">Products</a>
+  <a href="#reviews">Reviews</a>
+  <a href="#contact">Contact</a>
+ </nav>
+
+</header>
+
+
+<!-- HERO -->
+
+<section class="hero" id="home">
+
+ <div class="heroBox" id="heroBox">
+
+  <div class="badge">
+   ✦ PREMIUM BUSINESS WEBSITE
+  </div>
+
+  <h1>
+   Grow Your<br>
+   <span class="gradient">Business Online</span>
+  </h1>
+
+  <p>
+   A modern digital experience where customers
+   can discover your products, services, location
+   and contact details.
+  </p>
+
+  <div>
+
+   <a class="btn" href="#products">
+    Explore Products
+   </a>
+
+   <a class="btn darkBtn" href="#contact">
+    Contact Us
+   </a>
+
+  </div>
+
+ </div>
+
+
+ <div class="cubeWrap">
+
+  <div class="cube">
+
+   <div class="face f1"></div>
+   <div class="face f2"></div>
+   <div class="face f3"></div>
+   <div class="face f4"></div>
+   <div class="face f5"></div>
+   <div class="face f6"></div>
+
+  </div>
+
+ </div>
+
+</section>
+
+
+<!-- STATS -->
+
+<section class="reveal">
+
+ <div class="stats">
+
+  <div class="stat">
+   <h2>500+</h2>
+   <p>Happy Customers</p>
+  </div>
+
+  <div class="stat">
+   <h2>5★</h2>
+   <p>Customer Rating</p>
+  </div>
+
+  <div class="stat">
+   <h2>3+</h2>
+   <p>Years Experience</p>
+  </div>
+
+  <div class="stat">
+   <h2>24/7</h2>
+   <p>Support</p>
+  </div>
+
+ </div>
+
+</section>
+
+
+<!-- SERVICES -->
+
+<section id="services" class="reveal">
+
+ <h2 class="title">
+  Our <span>Services</span>
+ </h2>
+
+ <div class="cards">
+
+  <div class="card tilt">
+   <div class="icon">🛍️</div>
+   <h3>Quality Products</h3>
+   <p>
+    Discover quality products and the latest
+    collection.
+   </p>
+  </div>
+
+  <div class="card tilt">
+   <div class="icon">🚚</div>
+   <h3>Fast Service</h3>
+   <p>
+    Simple, quick and reliable customer service.
+   </p>
+  </div>
+
+  <div class="card tilt">
+   <div class="icon">💬</div>
+   <h3>Customer Support</h3>
+   <p>
+    Get help and answers whenever you need them.
+   </p>
+  </div>
+
+  <div class="card tilt">
+   <div class="icon">⭐</div>
+   <h3>Trusted Quality</h3>
+   <p>
+    Customer satisfaction and trust come first.
+   </p>
+  </div>
+
+ </div>
+
+</section>
+
+
+<!-- OFFER -->
+
+<section class="reveal">
+
+ <div class="offer">
+
+  <h2>🔥 Special Offer</h2>
+
+  <p>
+   Get up to <b>20% OFF</b> on selected products.
+  </p>
+
+  <a class="btn" href="#contact">
+   Enquire Now
+  </a>
+
+ </div>
+
+</section>
+
+
+<!-- PRODUCTS -->
+
+<section id="products" class="reveal">
+
+ <h2 class="title">
+  Featured <span>Products</span>
+ </h2>
+
+ <div class="products">
+
+  <div class="product">
+
+   <div class="productPhoto">👕</div>
+
+   <div class="productInfo">
+
+    <h3>Premium Collection</h3>
+
+    <p>Modern quality products</p>
+
+    <div class="price">₹799</div>
+
+    <a
+     class="btn"
+     href="https://wa.me/919999999999"
+     target="_blank">
+     WhatsApp
+    </a>
+
+   </div>
+
+  </div>
+
+
+  <div class="product">
+
+   <div class="productPhoto">👟</div>
+
+   <div class="productInfo">
+
+    <h3>Classic Footwear</h3>
+
+    <p>Comfortable everyday style</p>
+
+    <div class="price">₹1,299</div>
+
+    <a
+     class="btn"
+     href="https://wa.me/919999999999"
+     target="_blank">
+     WhatsApp
+    </a>
+
+   </div>
+
+  </div>
+
+
+  <div class="product">
+
+   <div class="productPhoto">⌚</div>
+
+   <div class="productInfo">
+
+    <h3>Premium Watch</h3>
+
+    <p>Elegant modern design</p>
+
+    <div class="price">₹1,999</div>
+
+    <a
+     class="btn"
+     href="https://wa.me/919999999999"
+     target="_blank">
+     WhatsApp
+    </a>
+
+   </div>
+
+  </div>
+
+
+  <div class="product">
+
+   <div class="productPhoto">🎒</div>
+
+   <div class="productInfo">
+
+    <h3>Travel Bag</h3>
+
+    <p>Strong & stylish design</p>
+
+    <div class="price">₹999</div>
+
+    <a
+     class="btn"
+     href="https://wa.me/919999999999"
+     target="_blank">
+     WhatsApp
+    </a>
+
+   </div>
+
+  </div>
+
+ </div>
+
+</section>
+
+
+<!-- GALLERY -->
+
+<section class="reveal">
+
+ <h2 class="title">
+  Business <span>Gallery</span>
+ </h2>
+
+ <div class="gallery">
+
+  <div class="galleryItem">📸</div>
+  <div class="galleryItem">🏪</div>
+  <div class="galleryItem">🛍️</div>
+  <div class="galleryItem">✨</div>
+
+ </div>
+
+</section>
+
+
+<!-- REVIEWS -->
+
+<section id="reviews" class="reveal">
+
+ <h2 class="title">
+  Customer <span>Reviews</span>
+ </h2>
+
+ <div class="reviews">
+
+  <div class="review">
+
+   <div class="stars">★★★★★</div>
+
+   <p>
+    "Amazing service and very good quality.
+    Highly recommended!"
+   </p>
+
+   <h4>— Rahul</h4>
+
+  </div>
+
+
+  <div class="review">
+
+   <div class="stars">★★★★★</div>
+
+   <p>
+    "Very professional experience.
+    I will definitely visit again."
+   </p>
+
+   <h4>— Priya</h4>
+
+  </div>
+
+
+  <div class="review">
+
+   <div class="stars">★★★★★</div>
+
+   <p>
+    "Good products, friendly service and
+    reasonable prices."
+   </p>
+
+   <h4>— Aman</h4>
+
+  </div>
+
+ </div>
+
+</section>
+
+
+<!-- FAQ -->
+
+<section class="reveal">
+
+ <h2 class="title">
+  Frequently Asked <span>Questions</span>
+ </h2>
+
+ <div class="faq">
+
+  <details>
+   <summary>What products do you offer?</summary>
+   <p>
+    We offer a wide range of quality products.
+    Contact us for the latest collection.
+   </p>
+  </details>
+
+  <details>
+   <summary>How can I place an enquiry?</summary>
+   <p>
+    Click the WhatsApp button and send us
+    your enquiry.
+   </p>
+  </details>
+
+  <details>
+   <summary>Where are you located?</summary>
+   <p>
+    Our address and Google Maps link are
+    available below.
+   </p>
+  </details>
+
+  <details>
+   <summary>What are your opening hours?</summary>
+   <p>
+    Monday to Saturday: 9 AM–8 PM.
+    Sunday: 10 AM–6 PM.
+   </p>
+  </details>
+
+ </div>
+
+</section>
+
+
+<!-- LOCATION + HOURS -->
+
+<section class="reveal">
+
+ <div class="infoGrid">
+
+  <div class="infoBox">
+
+   <div class="icon">📍</div>
+
+   <h3>Our Location</h3>
+
+   <p>
+    Main Market Road<br>
+    Your City, Odisha
+   </p>
+
+   <a
+    class="btn"
+    href="https://www.google.com/maps"
+    target="_blank">
+    📍 Open Maps
+   </a>
+
+  </div>
+
+
+  <div class="infoBox">
+
+   <div class="icon">🕐</div>
+
+   <h3>Opening Hours</h3>
+
+   <p>
+    Monday — 9 AM–8 PM<br>
+    Tuesday — 9 AM–8 PM<br>
+    Wednesday — 9 AM–8 PM<br>
+    Thursday — 9 AM–8 PM<br>
+    Friday — 9 AM–8 PM<br>
+    Saturday — 9 AM–8 PM<br>
+    Sunday — 10 AM–6 PM
+   </p>
+
+  </div>
+
+ </div>
+
+</section>
+
+
+<!-- CONTACT -->
+
+<section id="contact" class="reveal">
+
+ <h2 class="title">
+  Contact <span>Us</span>
+ </h2>
+
+ <div class="contactBox">
+
+  <div class="icon">📞</div>
+
+  <h3>Let's Talk</h3>
+
+  <p>
+   Have a question or want to know more?
+   Contact us directly.
+  </p>
+
+  <a
+   class="btn"
+   href="tel:+919999999999">
+   📞 Call Now
+  </a>
+
+  <a
+   class="btn"
+   href="https://wa.me/919999999999"
+   target="_blank">
+   💬 WhatsApp
+  </a>
+
+ </div>
+
+</section>
+
+
+<!-- GET WEBSITE -->
+
+<section class="reveal">
+
+ <div class="getWebsite">
+
+  <h2>
+   Want a Website Like This?
+  </h2>
+
+  <p>
+   Give your business a professional online
+   presence with a modern, mobile-friendly
+   website.
+  </p>
+
+  <br>
+
+  <a
+   class="btn"
+   href="https://wa.me/919999999999"
+   target="_blank">
+   🚀 Get Your Website
+  </a>
+
+ </div>
+
+</section>
+
+
+<!-- FLOATING WHATSAPP -->
+
+<a
+ class="whatsapp"
+ href="https://wa.me/919999999999"
+ target="_blank">
+ 💬
+</a>
+
+
+<footer>
+ © 2026 Nova Business • Premium Website Demo
+</footer>
+
+
+<script>
+
+/* PARTICLES */
+
+const canvas=document.getElementById("particles");
+const ctx=canvas.getContext("2d");
+
+let particles=[];
+
+function resizeCanvas(){
+
+ canvas.width=window.innerWidth;
+ canvas.height=window.innerHeight;
+
+}
+
+resizeCanvas();
+
+window.addEventListener("resize",resizeCanvas);
+
+for(let i=0;i<70;i++){
+
+ particles.push({
+  x:Math.random()*window.innerWidth,
+  y:Math.random()*window.innerHeight,
+  r:Math.random()*2+0.5,
+  speed:Math.random()*0.5+0.1
+ });
+
+}
+
+function animate(){
+
+ ctx.clearRect(
+  0,
+  0,
+  canvas.width,
+  canvas.height
+ );
+
+ particles.forEach(p=>{
+
+  p.y-=p.speed;
+
+  if(p.y<0){
+
+   p.y=canvas.height;
+   p.x=Math.random()*canvas.width;
+
+  }
+
+  ctx.beginPath();
+
+  ctx.arc(
+   p.x,
+   p.y,
+   p.r,
+   0,
+   Math.PI*2
+  );
+
+  ctx.fillStyle="rgba(0,234,255,.5)";
+
+  ctx.fill();
+
+ });
+
+ requestAnimationFrame(animate);
+
+}
+
+animate();
+
+
+/* HERO 3D */
+
+const hero=
+document.getElementById("heroBox");
+
+document.addEventListener("mousemove",function(e){
+
+ if(window.innerWidth<700)return;
+
+ const x=
+ (window.innerWidth/2-e.clientX)/40;
+
+ const y=
+ (window.innerHeight/2-e.clientY)/40;
+
+ hero.style.transform=
+ `rotateY(${x}deg) rotateX(${y}deg)`;
+
+});
+
+
+/* CARD 3D */
+
+document.querySelectorAll(".tilt")
+.forEach(card=>{
+
+ card.addEventListener("mousemove",function(e){
+
+  const r=card.getBoundingClientRect();
+
+  const x=e.clientX-r.left;
+  const y=e.clientY-r.top;
+
+  const rx=((y-r.height/2)/(r.height/2))*-6;
+  const ry=((x-r.width/2)/(r.width/2))*6;
+
+  card.style.transform=
+  `rotateX(${rx}deg) rotateY(${ry}deg)`;
+
+ });
+
+ card.addEventListener("mouseleave",function(){
+
+  card.style.transform=
+  "rotateX(0deg) rotateY(0deg)";
+
+ });
+
+});
+
+
+/* SCROLL REVEAL */
+
+const revealElements=
+document.querySelectorAll(".reveal");
+
+function reveal(){
+
+ revealElements.forEach(el=>{
+
+  const position=
+  el.getBoundingClientRect().top;
+
+  if(position<window.innerHeight-80){
+
+   el.classList.add("show");
+
+  }
+
+ });
+
+}
+
+window.addEventListener("scroll",reveal);
+
+reveal();
+
+</script>
+
+</body>
+      </html>
